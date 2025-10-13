@@ -1,14 +1,17 @@
 <template>
-    <div>
-        <h1>Hello World {{ count }}</h1>
+    
+         <div>
+        <h1>index</h1>
+        <Link href="/show">Show Page </Link>
+        <p>{{message}}</p>
     </div>
+    
+   
 </template>
 
 <script setup>
-import {ref} from 'vue'
-
-const count = ref(0)
-setInterval(() => {
-    count.value++
-}, 1000)
+    import {Link } from '@inertiajs/vue3'
+    
+    
+    defineProps(['message'])
 </script>
