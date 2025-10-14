@@ -8,7 +8,7 @@
                 <div class="text-xl text-indigo-600 dark:text-indigo-300 font-medium">
                     <Link href="/listings">Listings </Link>
                 </div>
-                <div class="text-lg font-medium bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md">
+                <div class="text-lg font-medium btn-primary">
                     <Link href="/listings/create">Create New Listing </Link>
                 </div>
                
