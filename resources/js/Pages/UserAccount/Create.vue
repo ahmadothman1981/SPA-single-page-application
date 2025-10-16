@@ -23,12 +23,15 @@
             </div>
             <div class="mt-4">
             <button type="submit" class="btn-primary w-full ">Create Account</button>
+            <div class="mt-2 text-center">
+                <Link href="/login" class="text-sm text-gray-600 dark:text-gray-300 font-medium">Already have an account ? Click here </Link>
+            </div>
             </div>
         </div>
     </form>
 </template>
 <script setup>
-import {useForm } from '@inertiajs/vue3';
+import {useForm , Link} from '@inertiajs/vue3';
 
 const form = useForm({
     name:'',

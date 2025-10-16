@@ -13,12 +13,15 @@
             </div>
             <div class="mt-4">
             <button type="submit" class="btn-primary w-full ">Login</button>
+            <div class="mt-2 text-center">
+                <Link href="/register" class="text-sm text-gray-600 dark:text-gray-300 font-medium">Need an account ? Click here </Link>
+            </div>
             </div>
         </div>
     </form>
 </template>
 <script setup>
-import {useForm } from '@inertiajs/vue3';
+import {useForm , Link} from '@inertiajs/vue3';
 
 const form = useForm({
     email: '',
