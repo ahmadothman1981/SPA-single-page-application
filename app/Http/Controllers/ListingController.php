@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
+
 
 class ListingController extends Controller
 {
@@ -22,7 +26,7 @@ class ListingController extends Controller
      */
     public function create()
     {
-    
+        Gate::authorize('create', Listing::class);
         return inertia('Listing/Create');
     }
 
@@ -51,10 +55,12 @@ class ListingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-         return inertia('Listing/Show' ,['listing'=>Listing::find($id)]);
-    }
+   public function show(Listing $listing)
+{
+    //using policy to check if user is authorized to view the listing
+    Gate::authorize('view', $listing);
+    return inertia('Listing/Show', ['listing' => $listing]);
+}
 
     /**
      * Show the form for editing the specified resource.
