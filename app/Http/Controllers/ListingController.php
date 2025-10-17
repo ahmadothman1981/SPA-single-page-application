@@ -57,6 +57,7 @@ class ListingController extends Controller
      */
    public function show(Listing $listing)
 {
+    
     //using policy to check if user is authorized to view the listing
     Gate::authorize('view', $listing);
     return inertia('Listing/Show', ['listing' => $listing]);
@@ -67,6 +68,7 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing )
     {
+        Gate::authorize('update', $listing);
          return inertia('Listing/Edit' ,['listing'=>$listing]);
     }
 
@@ -75,6 +77,7 @@ class ListingController extends Controller
      */
     public function update(Request $request, Listing $listing)
     {
+        Gate::authorize('update', $listing);
         $listing->update(
             $request->validate([
                 'beds' => 'required|integer|min:0',
@@ -96,6 +99,7 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
+        Gate::authorize('delete', $listing);
         $listing->delete();
         return redirect()->back()
         ->with('success','Listing deleted successfully');
