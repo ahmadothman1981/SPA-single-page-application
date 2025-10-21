@@ -55,6 +55,9 @@ class Listing extends Model
         })
         ->when($filters['areaTo'] ?? null, function ($query, $value) {
             return $query->where('area', '<=', (int) $value);
-        }); 
+        })
+        ->when($filters['deleted'] ?? false, function ($query, $value) {
+            return $query->withTrashed();
+        });
     }
 }

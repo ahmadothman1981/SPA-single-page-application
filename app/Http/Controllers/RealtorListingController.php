@@ -10,10 +10,14 @@ use Illuminate\Support\Facades\Gate;
 
 class RealtorListingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         //dd(Auth::user()->listings);
-        $userListings = Auth::user()->listings;
+       // dd((bool)$request->get('deleted'));
+       $filters = [
+        'deleted' => $request->boolean('deleted') ];
+        $userListings = Auth::user()->listings()->mostRecent()->filter($filters)->get();
+
 
         return inertia('Realtor/index',['listings' => $userListings]);
     }

@@ -1,7 +1,7 @@
 <template>
     <h1 class="text-2xl font-bold mb-4">Your Listings</h1>
     <section>
-        Filters
+       <RealtorFilters />
     </section>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
 
@@ -30,6 +30,7 @@ import Box from '../../Components/UI/Box.vue'
 import Price from '../../Components/Price.vue'
 import ListingSpace from '../../Components/UI/ListingSpace.vue'
 import ListingAddress from '../../Components/ListingAddress.vue'
+import RealtorFilters from '../../Pages/Realtor/Components/RealtorFilters.vue'
 import {Link} from '@inertiajs/vue3'
 
 
