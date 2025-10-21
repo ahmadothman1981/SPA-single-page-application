@@ -10,9 +10,10 @@
                 </div>
                 <div class="flex-1 flex justify-end">
                     <div v-if="user" class="text-sm font-small flex items-center gap-2">
-                        <div class="text-lg font-small text-indigo-600 dark:text-indigo-300">
+                        <Link :href="'/realtor/listings'" class="text-lg font-small text-indigo-600 dark:text-indigo-300">
+                           
                             {{ user.name || 'Guest' }}
-                        </div>
+                        </Link>
                         <Link class="btn-primary" href="/listings/create">Create Listing</Link>
                         <div>
                             <form @submit.prevent="logout">

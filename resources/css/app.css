@@ -31,4 +31,7 @@
      .input-error{
         @apply text-sm text-red-500 dark:text-red-400;
     }
+    .btn-outline {
+        @apply p-2 rounded-md border shadow-md border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:border-gray-600;
+    }
 }

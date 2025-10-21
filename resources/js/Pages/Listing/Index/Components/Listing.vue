@@ -1,7 +1,7 @@
 <template>
      <Box >
     <div>
-      <Link :href="`/listings/${listing.id}`"><h2>{{listing.city}}</h2></Link>
+      <Link :href="`/listings/${listing.id}`"><h2> {{listing.city}}</h2></Link>
       <div class="flex items-center gap-1">
         <Price :price="listing.price" class="text-2xl font-bold"/>
         <div class="text-xs font-bold text-gray-500">
@@ -15,9 +15,7 @@
         <Link :href="`/listings/${listing.id}/edit`">Edit</Link>
 
     </div>
-    <div>
-       <Link :href="`/listings/${listing.id}`" method="delete">Delete</Link>
-    </div>
+   
     </Box>
 </template>
 <script setup>
