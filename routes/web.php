@@ -9,7 +9,6 @@ use App\Http\Controllers\RealtorListingController;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/show', [IndexController::class, 'show']);
-Route::resource('/listings', ListingController::class)->only(['create', 'store', 'edit', 'update'])->middleware('auth');
 Route::resource('/listings', ListingController::class)->only(['index' , 'show']);
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
@@ -20,7 +19,7 @@ Route::post('/register' ,[UserAccountController::class , 'store'])->name('regist
 
 Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(
     function(){
-        Route::resource('listings', RealtorListingController::class)->only(['index','destroy']);
+        Route::resource('listings', RealtorListingController::class)->only(['index','edit','update','create','store','destroy']);
 
     }
 );

@@ -14,7 +14,7 @@
                            
                             {{ user.name || 'Guest' }}
                         </Link>
-                        <Link class="btn-primary" href="/listings/create">Create Listing</Link>
+                        <Link class="btn-primary" href="/realtor/listings/create">Create Listing</Link>
                         <div>
                             <form @submit.prevent="logout">
                                 

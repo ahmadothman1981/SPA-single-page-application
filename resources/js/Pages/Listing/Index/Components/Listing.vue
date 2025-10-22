@@ -11,10 +11,7 @@
       <ListingSpace :listing="listing" class="text-lg"/>
         <ListingAddress :listing="listing" class="text-gray-500"/>
     </div>
-    <div>
-        <Link :href="`/listings/${listing.id}/edit`">Edit</Link>
-
-    </div>
+   
    
     </Box>
 </template>
