@@ -15,11 +15,14 @@ class RealtorListingController extends Controller
         //dd(Auth::user()->listings);
        // dd((bool)$request->get('deleted'));
        $filters = [
-        'deleted' => $request->boolean('deleted') ];
-        $userListings = Auth::user()->listings()->mostRecent()->filter($filters)->get();
+        'deleted' => $request->boolean('deleted'),...$request->only(['by','order']) ];
+        $userListings = Auth::user()->listings()
+        ->filter($filters)
+        ->paginate(5)
+        ->withQueryString();
 
 
-        return inertia('Realtor/index',['listings' => $userListings]);
+        return inertia('Realtor/index',['filters' => $filters,'listings' => $userListings]);
     }
       public function destroy(Listing $listing)
     {

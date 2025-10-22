@@ -24,6 +24,14 @@ class Listing extends Model
          'price',
          'by_user_id',
     ];
+     protected $casts = [
+        'price' => 'integer',
+        'beds' => 'integer',
+        'baths' => 'integer',
+        'area' => 'integer',
+        'deleted_at' => 'datetime',
+    ];
+    
 
     public function owner()
     {
@@ -58,6 +66,17 @@ class Listing extends Model
         })
         ->when($filters['deleted'] ?? false, function ($query, $value) {
             return $query->withTrashed();
-        });
+        })
+        ->when($filters['by'] ?? null, function ($query, $value) use ($filters) {
+    $allowedColumns = ['price', 'beds', 'baths', 'area', 'created_at'];
+    $allowedDirections = ['asc', 'desc'];
+
+    $column = in_array($value, $allowedColumns) ? $value : 'created_at';
+    $direction = in_array(strtolower($filters['order'] ?? 'desc'), $allowedDirections)
+        ? strtolower($filters['order'] ?? 'desc')
+        : 'desc';
+
+    return $query->orderBy($column, $direction);
+    });
     }
 }
