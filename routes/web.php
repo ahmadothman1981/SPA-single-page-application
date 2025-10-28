@@ -17,9 +17,16 @@ Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::get('/register' ,[UserAccountController::class , 'create'])->name('register');
 Route::post('/register' ,[UserAccountController::class , 'store'])->name('register.store');
 
-Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(
-    function(){
-        Route::resource('listings', RealtorListingController::class)->only(['index','edit','update','create','store','destroy']);
+Route::prefix('realtor')->name('realtor.')->middleware('auth')
+    ->group(function()
+    {
+        Route::put('listings/{listing}/restore', [RealtorListingController::class, 'restore'])
+            ->name('listings.restore')->withTrashed();
+        ; 
+        Route::resource('listings', RealtorListingController::class)
+        ->only(['index','edit','update','create','store','destroy'])
+        ->withTrashed();
+
 
     }
 );

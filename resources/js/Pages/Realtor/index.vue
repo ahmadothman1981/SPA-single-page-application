@@ -5,9 +5,9 @@
     </section>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
 
-        <Box v-for="listing in listings.data" :key="listing.id" :listing="listing">
+        <Box v-for="listing in listings.data" :key="listing.id" :listing="listing" :class="{'border-dashed':listing.deleted_at}">
             <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
-                <div>
+                <div :class="{'opacity-25':listing.deleted_at}">
                     <div class="xl:flex items-center gap-2">
                         <Price :price="listing.price" class="text-2xl font-medium"/>
                         <ListingSpace :listing="listing"/>
@@ -18,8 +18,11 @@
                 <div class="flex items-center gap-2 text-gray-500 dark:text-gray-400">
                 <a class="btn-outline text-xs font-medium" target="_blank" :href="`/listings/${listing.id}`">Perview</a>
                  <Link class="btn-outline text-xs font-medium" :href="`/realtor/listings/${listing.id}/edit`">Edit</Link> 
-                 <Link class="btn-outline text-xs font-medium" :href="`/realtor/listings/${listing.id}`" as="button" method="delete">Delete</Link> 
-
+                 <Link class="btn-outline text-xs font-medium" v-if="!listing.deleted_at" :href="`/realtor/listings/${listing.id}`" as="button" method="delete">Delete</Link> 
+                    <Link class="btn-outline text-xs font-medium"
+                     v-else :href="`/realtor/listings/${listing.id}/restore`"
+                      as="button" method="put">
+                      Restore</Link>
                 </div>
             </div>
         </Box>
