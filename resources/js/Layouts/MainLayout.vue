@@ -1,5 +1,6 @@
 <template>
       <header class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 w-full">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
         <div class="container mx-auto">
             <nav class="flex items-center p-4">
                 <div class="flex-1">

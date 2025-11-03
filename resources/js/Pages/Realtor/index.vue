@@ -15,7 +15,8 @@
                         <ListingAddress :listing="listing" class="text-gray-500"/>
                 </div>
 
-                <div class="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+               <section>
+                 <div class="flex items-center gap-2 text-gray-500 dark:text-gray-400">
                 <a class="btn-outline text-xs font-medium" target="_blank" :href="`/listings/${listing.id}`">Perview</a>
                  <Link class="btn-outline text-xs font-medium" :href="`/realtor/listings/${listing.id}/edit`">Edit</Link> 
                  <Link class="btn-outline text-xs font-medium" v-if="!listing.deleted_at" :href="`/realtor/listings/${listing.id}`" as="button" method="delete">Delete</Link> 
@@ -24,6 +25,10 @@
                       as="button" method="put">
                       Restore</Link>
                 </div>
+                <div class="mt-2">
+                    <Link class="btn-outline text-xs font-medium block w-full text-center" :href="`/realtor/listings/${listing.id}/images/create`">Add Images</Link>
+                </div>
+               </section>
             </div>
         </Box>
     </section>

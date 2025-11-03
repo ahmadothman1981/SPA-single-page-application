@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\ListingImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,6 +37,10 @@ class Listing extends Model
     public function owner()
     {
         return $this->belongsTo(User::class,'by_user_id');
+    }
+    public function images()
+    {
+        return $this->hasMany(ListingImage::class);
     }
 
     public function scopeMostRecent(Builder $query)

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,6 +26,7 @@ class ListingFactory extends Factory
             'street' => fake()->streetName(),
             'street_nr' => fake()->buildingNumber(),
             'price' => fake()->numberBetween(1000, 1000000),
+             'by_user_id' => User::factory(),
         ];
     }
 }
