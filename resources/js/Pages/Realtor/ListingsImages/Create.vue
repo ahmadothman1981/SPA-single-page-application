@@ -29,18 +29,23 @@
   </Box>
   <Box v-if="props.listing.images.length > 0" class="mt-4">
     <template #header>Preview Images</template>
-     <div class="flex flex-wrap gap-2">
-    <div v-for="image in props.listing.images" :key="image.id" class="relative">
-      <img :src="image.src" alt="Preview" class="w-20 h-20 object-cover rounded-md" />
-      <button
-        class="absolute top-0 right-0 text-red-500"
-        type="button"
-        @click="removeImage(image)"
-      >
-        &times;
-      </button>
+
+    <section class="mt-4 grid grid-cols-3 gap-4">
+     
+    <div v-for="image in props.listing.images" :key="image.id" class="flex flex-col justify-between">
+      <img :src="image.src" alt="Preview" class="w-40 h-40 object-cover rounded-md" />
+   <Link
+  :href="`/realtor/listings/${props.listing.id}/images/${image.id}`"
+  method="delete"
+  as="button"
+  class="btn-outline mt-2 text-xs w-40 h-7"
+>
+  Delete
+</Link>
+     
     </div>
-  </div>
+ 
+    </section>
   </Box>
  
 </template>
@@ -49,6 +54,7 @@
 import { ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import Box from '../../../Components/UI/Box.vue';
+import {Link} from '@inertiajs/vue3'
 
 const props = defineProps({
   listing: {

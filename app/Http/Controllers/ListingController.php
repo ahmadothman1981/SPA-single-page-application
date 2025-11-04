@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Gate;
 
 class ListingController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      */
@@ -42,44 +41,6 @@ class ListingController extends Controller
     );
     
 
-
-    // Get filters safely
-   
-
-    // Apply price filters
-    // if ($priceFrom !== null) {
-    //     $query->where('price', '>=', (int) $priceFrom);
-    // }
-    // if ($priceTo !== null) {
-    //     $query->where('price', '<=', (int) $priceTo);
-    // }
-
-    // Apply beds
-    // if ($beds !== null) {
-    //     if ($beds == 6) {
-    //         $query->where('beds', '>=', 6);
-    //     } else {
-    //         $query->where('beds', (int) $beds);
-    //     }
-    // }
-
-    // // Apply baths
-    // if ($baths !== null) {
-    //     if ($baths == 6) {
-    //         $query->where('baths', '>=', 6);
-    //     } else {
-    //         $query->where('baths', (int) $baths);
-    //     }
-    // }
-
-    // // Apply area
-    // if ($areaFrom !== null) {
-    //     $query->where('area', '>=', (int) $areaFrom);
-    // }
-    // if ($areaTo !== null) {
-    //     $query->where('area', '<=', (int) $areaTo);
-    // }
-
     return inertia('Listing/Index', [
         'listings' => $query->paginate(10)->withQueryString(),
         'filters' => [
@@ -102,7 +63,7 @@ class ListingController extends Controller
      */
    public function show(Listing $listing)
 {
-    
+    $listing->load(['images']);
     //using policy to check if user is authorized to view the listing
     Gate::authorize('view', $listing);
     return inertia('Listing/Show', ['listing' => $listing]);

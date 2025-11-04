@@ -34,6 +34,8 @@ Route::prefix('realtor')->name('realtor.')->middleware('auth')
     ->name('listings.images.create');
     Route::post('listings/{listing}/images', [RealtorListingImageController::class, 'store'])
     ->name('listings.images.store');
+    Route::delete('listings/{listing}/images/{listingImage}', [RealtorListingImageController::class, 'destroy'])
+    ->name('listings.images.destroy');
 
     }
 );

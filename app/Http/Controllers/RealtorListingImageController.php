@@ -6,6 +6,7 @@ use App\Models\Listing;
 use App\Models\ListingImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RealtorListingImageController extends Controller
 {
@@ -36,5 +37,12 @@ class RealtorListingImageController extends Controller
         }
        }
        return redirect()->back()->with('success','Images uploaded successfully');
+    }
+    public function destroy( $listing , ListingImage $listingImage)
+    {
+      
+        Storage::disk('public')->delete($listingImage->filename);
+        $listingImage->delete();
+        return redirect()->back()->with('success','Image deleted successfully');
     }
 }
